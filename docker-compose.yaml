@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  nuxt:
+    image: node:20-alpine
+    container_name: ticketing-nuxt
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nuxt-app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/ticketing
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - mongodb
+    networks:
+      - ticketing-network
+
+  mongodb:
+    image: mongo:7
+    container_name: ticketing-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=ticketing
+    networks:
+      - ticketing-network
+
+networks:
+  ticketing-network:
+    driver: bridge
+
+volumes:
+  mongodb-data:
