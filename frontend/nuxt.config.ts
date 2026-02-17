@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/icon'],
   
   runtimeConfig: {
-    mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017'
+    // mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017'
+    mongodbUri: 'mongodb://82.112.240.32:27017'
   }
 })

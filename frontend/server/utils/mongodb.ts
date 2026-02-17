@@ -8,7 +8,8 @@ export async function connectToDatabase() {
   }
 
   const config = useRuntimeConfig();
-  const uri = config.mongodbUri || 'mongodb://localhost:27017';
+  // const uri = config.mongodbUri || 'mongodb://localhost:27017';
+  const uri = 'mongodb://82.112.240.32:27017';
   
   client = new MongoClient(uri);
   
